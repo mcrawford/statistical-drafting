@@ -79,6 +79,8 @@ class DraftModel:
         # Update ratings.
         self.pick_table = self.pick_table.drop("rating", axis=1)
         self.pick_table = self.pick_table.join(card_ratings)
+        print(f"Debug: pick_table['rating'] head:\n{self.pick_table['rating'].head()}")
+        print(f"Debug: pick_table['p1p1_rating'] head:\n{self.pick_table['p1p1_rating'].head()}")
         self.pick_table["synergy"] = (
             self.pick_table["rating"] - self.pick_table["p1p1_rating"]
         )

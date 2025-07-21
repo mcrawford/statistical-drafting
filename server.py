@@ -86,7 +86,11 @@ def pick_order():
         }), 400
     
     # Parse collection from comma-separated string
-    collection = collection_str.split(',') if collection_str else []
+    import urllib.parse
+    print(f"Received collection_str: {collection_str}")
+    decoded_collection_str = urllib.parse.unquote(collection_str)
+    collection = decoded_collection_str.split(',') if decoded_collection_str else []
+    print(f"Parsed collection: {collection}")
     
     # Get model
     model, error = get_model(set_code, draft_mode)
